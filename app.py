@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-st.set_page_config(page_title="Multi-gas Thermal MFC Digital Twin", layout="wide")
+st.set_page_config(page_title="Multi-Gas Thermal MFC Digital Twin", layout="wide")
 R = 8.314462618
 P_N = 101325.0
 T_N = 273.15
@@ -199,4 +199,4 @@ if "mg_df" in st.session_state:
 else:
     st.info("Choose a gas and operating conditions, then click Run multi-gas simulation.")
 
-st.warning("Safety and validity: This is a software-only educational digital twin. It does not validate any physical sensor, gas compatibility, flammability/toxicity controls, pressure rating, or accuracy. Do not use it to design, certify, or operate a real gas system. Hydrogen, methane and carbon monoxide require specialist gas safety controls. Use manufacturer-approved wetted materials and certified components.")
+st.warning("Validation is required")
