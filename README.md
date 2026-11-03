@@ -1,29 +1,65 @@
 # Digital-MFC-Simulator
 
-Digital MFC Simulator
-Educational Streamlit simulator for a low-pressure gas flow controller.
-Run locally
-1. Install Python 3.10 or newer.
-2. Open a terminal in this folder.
-3. Create and activate a virtual environment (recommended).
-4. Install dependencies:
-pip install -r requirements.txt
-5. Launch:
-streamlit run app.py
-Default case
-- Gas: Air
-- Flow setpoint: 5 NLPM
-- Inlet pressure: 2.0 bar absolute
-- Outlet pressure: 1.8 bar absolute
-- PI gains: Kp = 2.0, Ki = 0.5
-Model scope and limitations
-This is an educational digital model, not a certified MFC design or calibration system.
-It uses an ideal-gas compressible-orifice equation for the control valve, a simplified
-low-Mach differential-pressure flow element, a virtual sensor with configurable noise,
-offset and gain error, and a discrete PI/PID controller. The calibration curve is
-synthetic and generated from the same simplified sensor model; it is not traceable
-calibration. It does not reproduce the thermal mass sensing principle of a Brooks
-SLA5800 and must not be used to size or operate real high-pressure equipment.
+# Multi-gas Thermal MFC Digital Twin — Streamlit deployment
 
-For real equipment, use manufacturer data, pressure-rated components, and traceable
-calibration performed by a qualified laboratory.
+This repository contains an educational Streamlit digital twin for a selectable-gas
+thermal mass-flow controller. It includes Air, N2, CO2, H2, CH4, CO and Ar; a
+synthetic gas-specific sensor response/calibration model; valve dynamics; PI/PID
+control; plots; and CSV exports.
+
+## Deploy on Streamlit Community Cloud
+
+1. Download and extract this project ZIP.
+2. Create a new **public or private GitHub repository** (depending on your plan and
+   repository access settings).
+3. Upload all files and folders from this project to the repository root. Ensure
+   `app.py` and `requirements.txt` are at the root and `.streamlit/config.toml`
+   remains inside the `.streamlit` folder.
+4. Sign in to Streamlit Community Cloud with GitHub.
+5. Select **Create app** / **Deploy an app**.
+6. Choose your repository, branch (usually `main`) and main file path `app.py`.
+7. Deploy. Streamlit will install packages from `requirements.txt`.
+8. Open the generated app URL and test each gas and flow setpoint.
+
+Official deployment guide: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app
+
+## Run locally first (recommended)
+
+```bash
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS/Linux
+source .venv/bin/activate
+
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+## Repository structure
+
+```text
+.
+├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── .streamlit/
+    └── config.toml
+```
+
+## Important scientific and safety limitations
+
+This is a software-only educational digital twin. The thermal bridge response and
+gas-specific calibration curves are illustrative and synthetic, not manufacturer
+transfer functions or traceable experimental calibrations. The valve model is a
+simplified teaching model. The application does not establish the accuracy,
+pressure rating, material compatibility, or safety of any physical MFC.
+
+Do not use this simulation to design, certify, or operate real gas equipment.
+Hydrogen and methane are flammable; carbon monoxide is acutely toxic; carbon dioxide
+can cause asphyxiation. Physical systems require manufacturer-approved components,
+appropriate gas detection/ventilation, pressure protection, qualified assembly and
+traceable gas-specific calibration.
